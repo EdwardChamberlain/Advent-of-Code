@@ -9,7 +9,6 @@ with open("Day_1/input_1.txt", 'r') as f:
 # Convert to int
 data = [int(i.strip()) for i in data]
 
-
 # Search for pairs summing RESULT
 results = [(x, y) for x, y in itertools.combinations(data, 2) if x + y == RESULT]
 for i in results:
