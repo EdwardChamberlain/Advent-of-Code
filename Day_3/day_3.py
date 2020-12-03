@@ -1,13 +1,31 @@
+from functools import reduce
+
+
 with open("Day_3/input_3.txt", 'r') as f:
-    data = f.readlines()
-data = [i.strip() for i in data]
+    data = [i.strip() for i in f.readlines()]
 
-count = 0
+coeficients = [
+    (1, 1),
+    (3, 1),
+    (5, 1),
+    (7, 1),
+    (1, 2),
+]
 
-for i, d in enumerate(data):
-    loc = d[i*3 % len(d)]
+counts = []
 
-    if loc == '#':
-        count += 1
+for r, d in coeficients:
+    count = 0
+    x = 0
+    y = 0
+    while True:
+        if data[x][y % len(data[x])] == '#':
+            count += 1
+        x += d
+        y += r
+        if x >= len(data):
+            break
+    counts.append(count)
 
-print(f"Trees hit: {count}")
+product = reduce((lambda x, y: x * y), counts)
+print(f"Product = {product}")
