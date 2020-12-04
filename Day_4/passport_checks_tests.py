@@ -26,4 +26,4 @@ class test_passport_methods(unittest.TestCase):
         self.assertFalse(passport_checks.check_id('0123456789'))
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
