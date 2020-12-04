@@ -18,22 +18,13 @@ def check_req_fields(entry):
     return True
 
 def check_birth(birth_string):
-    if 1920 <= int(birth_string) <= 2002:
-        return True
-    else:
-        return False
+    return 1920 <= int(birth_string) <= 2002
 
 def check_issue(issue_string):
-    if 2010 <= int(issue_string) <= 2020:
-        return True
-    else:
-        return False
+    return 2010 <= int(issue_string) <= 2020
 
 def check_expiry(expiry_string):
-    if 2020 <= int(expiry_string) <= 2030:
-        return True
-    else:
-        return False
+    return 2020 <= int(expiry_string) <= 2030
 
 def check_height(height_string):
     height = re.search('(\d+)(in|cm)', height_string)
@@ -42,16 +33,11 @@ def check_height(height_string):
         return False
 
     if height[2] == 'in':
-        if 59 < int(height[1]) < 76:
-            return True
-        else:
-            return False
+        return 59 <= int(height[1]) <= 76
 
     elif height[2] == 'cm':
-        if 150 < int(height[1]) < 193:
-            return True
-        else:
-            return False
+        return 150 <= int(height[1]) <= 193
+
     else: 
         return False
 
@@ -81,8 +67,7 @@ def check_id(id_string):
     if len(id_string) != 9:
         return False
 
-    try:
-        int(id_string)
+    if id_string.isnumeric():
         return True
-    except:
+    else:
         return False
