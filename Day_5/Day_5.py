@@ -9,4 +9,10 @@ for s in data:
     seat_id = binary_parser.get_seat_id(seat_loc)
     seat_ids.append(seat_id)
 
-print(max(seat_ids))
+prev = False
+for i in sorted(seat_ids):
+    if prev:
+        if i - 1 != prev:
+            print("Missing!", i - 1)
+
+    prev = i
