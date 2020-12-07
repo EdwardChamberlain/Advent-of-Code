@@ -2,6 +2,7 @@
 import unittest
 import question_parser
 
+
 class Test_question_parser(unittest.TestCase):
     def test_count_response(self):
         self.assertTrue(question_parser.count_response('abc') == 3)
@@ -18,6 +19,10 @@ class Test_question_parser(unittest.TestCase):
         self.assertTrue(question_parser.or_resp(['abc']) == 3)
         self.assertTrue(question_parser.or_resp(['ab', 'ac']) == 3)
         self.assertTrue(question_parser.or_resp(['a', 'a', 'a', 'a']) == 1)
+        
+
+    def test_count_response2(self):
+        pass
 
 
 if __name__ == '__main__':
