@@ -1,11 +1,17 @@
 import bag_parser
 import collections
+MY_BAG = 'shiny gold'
 
 with open("Day_7/input_7.txt", 'r') as f:
     data = f.readlines()
 
 bags_dict = bag_parser.build_bags_dict(data)
 
-result = bag_parser.get_containing_bags(bags_dict, 'shiny gold')
-print(len(collections.Counter(result).keys()))
+bagsklfdhjg = bag_parser.rec_containing_bags2(bags_dict, MY_BAG)
+print(len(collections.Counter(bagsklfdhjg).keys()))
 
+result = bag_parser.rec_containing_bags(bags_dict, MY_BAG)
+print(f"Total Bags that could contain a {MY_BAG} bag: {len(collections.Counter(result).keys())}")
+
+bags_inside = bag_parser.rec_total_bags_inside(bags_dict, MY_BAG)
+print(f"Bags inside my {MY_BAG}: {bags_inside}")

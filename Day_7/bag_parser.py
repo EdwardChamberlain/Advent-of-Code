@@ -28,7 +28,18 @@ def build_bags_dict(data):
 
     return bags_dict
 
-def get_containing_bags(bag_dict, search_term, reset=True):
+def rec_containing_bags2(bags_dict, search_term):
+    result = []
+
+    for k, v in bags_dict.items():
+        if search_term in [i[1] for i in v if i is not None]:
+            result.append(k)
+            next_level = rec_containing_bags(bags_dict, k)
+            result.append(*next_level)
+
+    return result
+
+def rec_containing_bags(bag_dict, search_term, reset=True):
     global RESULT
     if reset:
         RESULT = []
@@ -36,6 +47,21 @@ def get_containing_bags(bag_dict, search_term, reset=True):
     for k, v in bag_dict.items():
         if search_term in [i[1] for i in v if i is not None]:
             RESULT.append(k)
-            print(f"{search_term} is in {k}")
-            get_containing_bags(bag_dict, k, reset=False)
+            rec_containing_bags(bag_dict, k, reset=False)
     return RESULT
+
+def total_containing_bags(bags_list):
+    try:
+        total = [i[0] for i in bags_list]
+    except TypeError:
+        return 0
+    return sum(total)
+
+def rec_total_bags_inside(bags_dict, bag_type):
+    bags_inside = total_containing_bags(bags_dict[bag_type])
+    
+    for i in bags_dict[bag_type]:
+        if i is not None:
+            bags_inside += rec_total_bags_inside(bags_dict, i[1]) * i[0]
+
+    return bags_inside
