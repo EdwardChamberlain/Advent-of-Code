@@ -2,7 +2,7 @@ import re
 
 
 def check_pass(password):
-    p = re.search('(\d+)-(\d+) ([a-z]): (.*)', password)
+    p = re.search(r'(\d+)-(\d+) ([a-z]): (.*)', password)
 
     count = p[4].count(p[3])
 
@@ -13,7 +13,7 @@ def check_pass(password):
 
 
 def check_pass_2(password):
-    p = re.search('(\d+)-(\d+) ([a-z]): (.*)', password)
+    p = re.search(r'(\d+)-(\d+) ([a-z]): (.*)', password)
 
     pos1 = p[4][int(p[1])-1] == p[3]
     pos2 = p[4][int(p[2])-1] == p[3]

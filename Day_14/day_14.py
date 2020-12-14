@@ -12,7 +12,7 @@ for i in data:
     if i.startswith('mask'):
         mask = i.split(' ')[2]
     else:
-        regex = re.search('mem\[(\d+)\] = (\d+)', i)
+        regex = re.search(r'mem\[(\d+)\] = (\d+)', i)
         masked_cmd = binary_parser.mask_value(regex[2], mask)
         result[regex[1]] = masked_cmd
 
@@ -25,7 +25,7 @@ for i in data:
     if i.startswith('mask'):
         mask = i.split(' ')[2]
     else:
-        regex = re.search('mem\[(\d+)\] = (\d+)', i)
+        regex = re.search(r'mem\[(\d+)\] = (\d+)', i)
         masked_add = binary_parser.apply_masking(regex[1], mask)
         all_addresses = binary_parser.get_all_addresses(masked_add)
         
