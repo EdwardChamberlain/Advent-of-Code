@@ -27,7 +27,7 @@ def check_expiry(expiry_string):
     return 2020 <= int(expiry_string) <= 2030
 
 def check_height(height_string):
-    height = re.search('(\d+)(in|cm)', height_string)
+    height = re.search(r'(\d+)(in|cm)', height_string)
 
     if height is None:
         return False
@@ -42,7 +42,7 @@ def check_height(height_string):
         return False
 
 def check_hair(hair_string):
-    if re.search('#[0-9|a-f]{6}', hair_string):
+    if re.search(r'#[0-9|a-f]{6}', hair_string):
         return True
     else:
         return False
