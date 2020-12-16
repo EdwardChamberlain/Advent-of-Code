@@ -4,7 +4,6 @@ from math import prod
 
 
 # ~~~~~~~~~~~ Get Data ~~~~~~~~~~~
-
 with open("Day_16/input_16.txt", 'r') as f:
     data = [i.split('\n') for i in f.read().split('\n\n')]
 
@@ -18,7 +17,6 @@ for i in data[0]:
 
 
 # ~~~~~~~~~~~ Pt 1 ~~~~~~~~~~~
-
 invalid_values = []
 for t in nearby_tickets:
     for n in t:
@@ -28,7 +26,6 @@ print(f"Pt 1: {sum([i for i in invalid_values if i is not None])}")
 
 
 # ~~~~~~~~~~~ Pt 2 ~~~~~~~~~~~
-
 valid_nearby_tickets = [i for i in nearby_tickets if ticket_translator.is_valid_ticket(i, requirements)]
 mappings = ticket_translator.get_ticket_mappings(valid_nearby_tickets, requirements)
 indexs = [v for k, v in mappings.items() if k.startswith('departure ')]
