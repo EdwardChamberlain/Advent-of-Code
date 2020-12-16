@@ -3,20 +3,7 @@ import ticket_translator
 from math import prod
 
 
-tracker = []
-
-def is_valid_value(value, requirement):
-    for i in requirements.values():
-        for n in i:
-            if n[0] <= value <= n[1]:
-                return True
-    tracker.append(value)
-    return False
-
-def is_valid_ticket(ticket, requirement):
-    validity = [is_valid_value(v, requirements) for v in ticket]
-    return all(validity)
-
+# ~~~~~~~~~~~ Get Data ~~~~~~~~~~~
 
 with open("Day_16/input_16.txt", 'r') as f:
     data = [i.split('\n') for i in f.read().split('\n\n')]
@@ -32,10 +19,12 @@ for i in data[0]:
 
 # ~~~~~~~~~~~ Pt 1 ~~~~~~~~~~~
 
+invalid_values = []
 for t in nearby_tickets:
-    is_valid_ticket(t, requirements)
+    for n in t:
+        invalid_values.append(ticket_translator.get_invalid_values(n, requirements))
 
-print(f"Pt 1: {sum(tracker)}")
+print(f"Pt 1: {sum([i for i in invalid_values if i is not None])}")
 
 
 # ~~~~~~~~~~~ Pt 2 ~~~~~~~~~~~

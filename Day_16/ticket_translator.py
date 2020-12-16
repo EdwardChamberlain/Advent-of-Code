@@ -1,18 +1,19 @@
+def get_invalid_values(value, requirement):
+    for i in requirement.values():
+        for n in i:
+            if n[0] <= value <= n[1]:
+                return
+    return value
+
+def is_valid_ticket(ticket, requirement):
+    validity = [get_invalid_values(v, requirement) for v in ticket]
+    return not any(validity)
+
 def validate(value, requirement):
     for n in requirement:
         if int(n[0]) <= value <= int(n[1]):
             return True
     return False
-
-def is_valid_value(value, requirement):
-    for i in requirement.values():
-        if validate(value, i):
-            return True
-    return False
-
-def is_valid_ticket(ticket, requirement):
-    validity = [is_valid_value(v, requirement) for v in ticket]
-    return all(validity)
 
 def get_possible_keys(tickets, requirements):
     possibles = {}
