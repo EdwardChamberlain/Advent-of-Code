@@ -3,11 +3,11 @@ import re
 RESULT = []
 
 def get_bag_name(input_string):
-    bags = re.search('(\w+ \w+) bags', input_string)
+    bags = re.search(r'(\w+ \w+) bags', input_string)
     return bags[1]
 
 def get_bag_contents(input_string):
-    bags = re.findall('(\w+) (\w+ \w+) bag', input_string)
+    bags = re.findall(r'(\w+) (\w+ \w+) bag', input_string)
 
     bags_ins = []
     for i in bags:
