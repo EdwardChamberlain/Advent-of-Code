@@ -1,14 +1,25 @@
 import re
 
 
+def solve(string):
+    string = resolve_bracket(string, solver=solve)
+    return accumulate(string)
+
+def solve2(string):
+    string = resolve_bracket(string, solver=solve2)
+
+    if '*' in string:
+        string = prioritise_add(string)
+        string = resolve_bracket(string, solve2)
+
+    return accumulate(string)
+
 def op(acc, op_tuple):
     op, value = op_tuple
     if op == '+':
         return acc + int(value)
     elif op == '*':
         return acc * int(value)
-    else:
-        raise NotImplementedError(op_tuple)
 
 def parenthetic_contents(string):
     stack = []
@@ -19,25 +30,10 @@ def parenthetic_contents(string):
             start = stack.pop()
             yield (len(stack), string[start + 1: i])
 
-def solve(string):
-    brackets = list(parenthetic_contents(string))
-    brackets = [i[1] for i in brackets if i[0] == 0]
-
-    for b in brackets:
-        string = string.replace(f"({b})", str(solve(b)), 1)
-
-    start = int(string.split(' ')[0])
-    ops = re.findall(r'(\+|\*) (\d+)', string)
-    accumulator = start
-    for i in ops:
-        accumulator = op(accumulator, i)
-
-    return accumulator
-
-def resolve_bracket(string):
+def resolve_bracket(string, solver):
     brackets = [i[1] for i in parenthetic_contents(string) if i[0] == 0]
     for b in brackets:
-        string = string.replace(f"({b})", str(solve2(b)), 1)
+        string = string.replace(f"({b})", str(solver(b)), 1)
     return string
 
 def prioritise_add(string):
@@ -48,12 +44,3 @@ def accumulate(string):
     for i in re.findall(r'(\+|\*) (\d+)', string):
         accumulator = op(accumulator, i)
     return accumulator
-
-def solve2(string):
-    string = resolve_bracket(string)
-
-    if '*' in string:
-        string = prioritise_add(string)
-        string = resolve_bracket(string)
-
-    return accumulate(string)
