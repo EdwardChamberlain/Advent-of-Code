@@ -1,5 +1,5 @@
 import message_parser
-import re
+
 
 with open("Day_19/input_19.txt", 'r') as f:
     data = [i.split('\n') for i in f.read().split('\n\n')]
