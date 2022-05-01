@@ -25,7 +25,7 @@ def check_pass_2(password):
 
 
 # Open Data
-with open("Day_2/input_2.txt", 'r') as f:
+with open("Day_02/input_2.txt", 'r') as f:
     data = f.readlines()
 
 good_passwords = [i for i in data if check_pass(i)]

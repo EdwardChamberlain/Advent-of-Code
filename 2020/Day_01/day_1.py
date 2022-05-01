@@ -3,7 +3,7 @@ import itertools
 RESULT = 2020
 
 # Open Data
-with open("Day_1/input_1.txt", 'r') as f:
+with open("Day_01/input_1.txt", 'r') as f:
     data = f.readlines()
 
 # Convert to int
