@@ -1,7 +1,7 @@
 import question_parser
 
 
-with open("Day_6/input_6.txt", 'r') as f:
+with open("2020/Day_06/input_6.txt", 'r') as f:
     data = f.read().split('\n\n')
 data = [i.split('\n') for i in data]
 
