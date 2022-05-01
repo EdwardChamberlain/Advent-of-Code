@@ -4,7 +4,7 @@ from math import prod
 
 
 # ~~~~~~~~~~~ Get Data ~~~~~~~~~~~
-with open("Day_16/input_16.txt", 'r') as f:
+with open("2020/Day_16/input_16.txt", 'r') as f:
     data = [i.split('\n') for i in f.read().split('\n\n')]
 
 your_ticket = [int(i) for i in data[1][1].split(',')]
