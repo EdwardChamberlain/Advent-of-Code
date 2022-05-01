@@ -2,7 +2,7 @@ import math
 import string
 from sympy.ntheory.modular import crt 
 
-with open("Day_13/input_13.txt", 'r') as f:
+with open("2020/Day_13/input_13.txt", 'r') as f:
     data = [i.strip() for i in f.readlines()]
 
 buses = [int(i) for i in data[1].split(',') if i != 'x']
