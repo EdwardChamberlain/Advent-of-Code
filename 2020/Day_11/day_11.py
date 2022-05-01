@@ -1,7 +1,7 @@
 import seat_parser
 import collections
 
-with open("Day_11/input_11.txt", 'r') as f:
+with open("2020/Day_11/input_11.txt", 'r') as f:
     data = [i.strip() for i in f.readlines()]
 
 seat_plan = data
