@@ -2,7 +2,7 @@ import binary_parser
 import re
             
 
-with open("Day_14/input_14.txt", 'r') as f:
+with open("2020/Day_14/input_14.txt", 'r') as f:
     data = [i.strip() for i in f.readlines()]
 
 # ~~~~~~~~~~ Pt 1 ~~~~~~~~~~
@@ -16,7 +16,7 @@ for i in data:
         masked_cmd = binary_parser.mask_value(regex[2], mask)
         result[regex[1]] = masked_cmd
 
-print(f"Pt: {sum(result.values())}")
+print(f"Pt 1: {sum(result.values())}")
 
 # ~~~~~~~~~~ Pt 2 ~~~~~~~~~~
 
@@ -32,4 +32,4 @@ for i in data:
         for i in all_addresses:
             result[i] = int(regex[2])
 
-print(f"P2: {sum(result.values())}")
+print(f"Pt 2: {sum(result.values())}")
