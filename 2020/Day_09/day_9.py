@@ -3,7 +3,7 @@ import encoder
 
 PREAMBLE = 25
 
-with open("Day_9/input_9.txt", 'r') as f:
+with open("2020/Day_09/input_9.txt", 'r') as f:
     data = f.readlines()
 data = [int(i) for i in data]
 
