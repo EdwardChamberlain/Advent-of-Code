@@ -2,7 +2,7 @@ import bag_parser
 import collections
 MY_BAG = 'shiny gold'
 
-with open("Day_7/input_7.txt", 'r') as f:
+with open("2020/Day_07/input_7.txt", 'r') as f:
     data = f.readlines()
 
 bags_dict = bag_parser.build_bags_dict(data)

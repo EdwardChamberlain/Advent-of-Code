@@ -35,7 +35,7 @@ def rec_containing_bags2(bags_dict, search_term):
         if search_term in [i[1] for i in v if i is not None]:
             result.append(k)
             next_level = rec_containing_bags(bags_dict, k)
-            result.append(*next_level)
+            result.extend(next_level)
 
     return result
 
