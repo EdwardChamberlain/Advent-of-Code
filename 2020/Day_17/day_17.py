@@ -1,4 +1,4 @@
-## This whle script is a steaming pile of garbage and if you are reading this I emplore you to look elsewhere for any semblance of competence. 
+## This whole script is a steaming pile of garbage and if you are reading this I emplore you to look elsewhere for any semblance of competence. 
 ##
 ## Oh and it takes ages to solve.
 
@@ -94,14 +94,14 @@ def render_map(core_map):
 
 
 problem_input = [
-    '...#..#.',
-    '..##.##.',
-    '..#.....',
-    '....#...',
-    '#.##...#',
-    '####..##',
-    '...##.#.',
-    '#.#.#...',
+    '#.#.##.#',
+    '#.####.#',
+    '...##...',
+    '#####.##',
+    '#....###',
+    '##..##..',
+    '#..####.',
+    '#...#.#.',
 ]
 
 core_map = import_input(problem_input, 6)
