@@ -1,6 +1,6 @@
 import instruction_parser
 
-with open("Day_8/input_8.txt", 'r') as f:
+with open("2020/Day_08/input_8.txt", 'r') as f:
     data = f.readlines()
 
 instructions = instruction_parser.parse_lines(data)
