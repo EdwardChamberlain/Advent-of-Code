@@ -1,7 +1,7 @@
 import ship
 
 
-with open("Day_12/input_12.txt", 'r') as f:
+with open("2020/Day_12/input_12.txt", 'r') as f:
     data = [i.strip() for i in f.readlines()]
 
 myShip = ship.Ship()
