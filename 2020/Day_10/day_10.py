@@ -2,7 +2,7 @@ import collections
 import connections
 
 
-with open("Day_10/input_10.txt", 'r') as f:
+with open("2020/Day_10/input_10.txt", 'r') as f:
     data = f.readlines()
 data = [int(i) for i in data]
 
