@@ -2,7 +2,7 @@ import itertools
 import jigsaw
 import math
 
-with open("Day_20/input_20.txt", 'r') as f:
+with open("2020/Day_20/input_20.txt", 'r') as f:
     data = [i.split('\n') for i in f.read().split('\n\n')]
 
 parsed_data = {}

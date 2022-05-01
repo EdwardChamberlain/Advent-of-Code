@@ -1,7 +1,7 @@
 import message_parser
 
 
-with open("Day_19/input_19.txt", 'r') as f:
+with open("2020/Day_19/input_19.txt", 'r') as f:
     data = [i.split('\n') for i in f.read().split('\n\n')]
 
 rules = {}
