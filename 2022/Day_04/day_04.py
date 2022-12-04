@@ -16,35 +16,23 @@ with open(os.path.dirname(sys.argv[0]) + "/input.txt", 'r') as f:
     data = f.read()
     data = data.split('\n') 
     data = [d.split(',') for d in data]
+    data = [(conv_int(d[0]), conv_int(d[1])) for d in data]
 
 
-# Pt 1
-count = 0
+count_a = 0
+count_b = 0
 for a, b in data:
-    a = conv_int(a)
-    b = conv_int(b)
-
     mainlist, sub_list = (b, a) if len_range(a) < len_range(b) else (a, b)
 
+
+    # Pt 1 
     if sub_list[0] >= mainlist[0] and sub_list[1] <= mainlist[1]:
-        count += 1
+        count_a += 1
+    
+    # Pt 2
+    if mainlist[1] >= sub_list[0]:
+        count_b += 1
 
-print(count)
-
-
-# Pt 2
-count = 0
-for n, d in enumerate(data):
-    a = conv_int(d[0])
-    b = conv_int(d[1])
-    if a[0] < b[0]:
-        x = a
-        y = b
-    else:
-        x = b
-        y = a
-
-    if x[1] >= y[0]:
-        count += 1
-
-print(count)
+    
+print(count_a)
+print(count_b)
