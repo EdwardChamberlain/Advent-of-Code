@@ -19,8 +19,8 @@ for n in range(9):
     col = [sp[n*4 + 1] for sp in start_positions[1:] if sp[n*4 + 1] != ' ']
     cols.append(col)
 
-moves = moves.split('\n')
 pattern = re.compile('move (.*) from (.*) to (.*)')
+moves = moves.split('\n')
 moves = [pattern.match(m).groups() for m in moves]
 moves = [list(map(int, m)) for m in moves]
 
