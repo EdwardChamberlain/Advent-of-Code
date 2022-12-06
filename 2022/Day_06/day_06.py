@@ -2,11 +2,11 @@ import sys
 import os
 
 
-def find_marker(data: str, lookahead: int) -> int:
+def find_marker_index(data: str, marker_size: int) -> int:
     for i in range(len(data)):
-        search_range = data[i:i+lookahead]
-        if len(set(search_range)) == lookahead:
-            return i+lookahead
+        search_range = data[i:i+marker_size]
+        if len(set(search_range)) == marker_size:
+            return i+marker_size
 
 
 with open(os.path.dirname(sys.argv[0]) + "/input.txt", 'r') as f:
