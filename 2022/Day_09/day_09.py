@@ -52,6 +52,8 @@ with open(os.path.dirname(sys.argv[0]) + "/input.txt", 'r') as f:
     data = data.split('\n') 
     data = [d.split(' ') for d in data]
 
+
+# Pt 1
 head = (0, 0)
 tail = (0, 0)
 
@@ -59,13 +61,32 @@ tail_positions = []
 for cmd in data:
     direction, repeats = cmd
     repeats = int(repeats)
-    print(direction)
     
     for _ in range(repeats):
         head = move_head(head, direction)
         tail = update_tail(head, tail)
-        # print(head, tail)
         tail_positions.append(tail)
 
 print(len(set(tail_positions)))
 
+
+# Pt 2
+knots = [(0, 0) for _ in range(10)]
+
+tail_positions = []
+for cmd in data:
+    direction, repeats = cmd
+    repeats = int(repeats)
+
+    for _ in range(repeats):
+        knots[0] = move_head(knots[0], direction)
+
+        for n, k in enumerate(knots):
+            if n == 0:
+                knots[n] = k
+                continue
+            knots[n] = update_tail(knots[n-1], k)
+
+        tail_positions.append(knots[-1])
+
+print(len(set(tail_positions)))
