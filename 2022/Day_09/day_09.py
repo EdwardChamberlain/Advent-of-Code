@@ -3,10 +3,10 @@ import os
 
 
 def get_vector(x, y):
-    return unit((x[0] - y[0], x[1] - y[1]))
+    return get_unit_vector((x[0] - y[0], x[1] - y[1]))
     
 
-def unit(x):
+def get_unit_vector(x):
     a, b = x
     return (make_1(a), make_1(b))
 
@@ -69,7 +69,6 @@ for cmd in data:
 
 print(len(set(tail_positions)))
 
-
 # Pt 2
 knots = [(0, 0) for _ in range(10)]
 
@@ -79,11 +78,9 @@ for cmd in data:
     repeats = int(repeats)
 
     for _ in range(repeats):
-        knots[0] = move_head(knots[0], direction)
-
         for n, k in enumerate(knots):
             if n == 0:
-                knots[n] = k
+                knots[n] = move_head(knots[n], direction)
                 continue
             knots[n] = update_tail(knots[n-1], k)
 
