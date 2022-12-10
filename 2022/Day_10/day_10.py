@@ -29,8 +29,14 @@ print(sum(strengths))
 
 
 # Pt 2
-get_col = lambda x: x % 40
-is_masked = lambda mask, pos: pos in (mask - 1, mask, mask + 1)
+def get_col(x: int) -> int:
+    return x % 40
+
+
+def is_masked(mask_position: int, position: int) -> bool:
+    mask_positions = (mask_position - 1, mask_position, mask_position + 1)
+    return position in mask_positions
+
 
 disp = []
 for i in range(len(hist)):
