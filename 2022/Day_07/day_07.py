@@ -36,7 +36,7 @@ def generate_files(root_path):
 
         elif cmd.startswith('cd'):
             new_path = cmd.split(' ')[-1]
-            path +=  '/' + new_path
+            path += '/' + new_path
 
         elif cmd.startswith('ls'):
             files = cmd.split('\n')[1:]
@@ -49,7 +49,7 @@ def generate_files(root_path):
                 if isinstance(f, str):
                     os.mkdir(path + '/' + f.split(' ')[-1])
                     continue
-                
+
                 with open(path + '/' + f[1], 'w') as file:
                     file.write(f[0])
 
@@ -79,7 +79,7 @@ print(sum(dirs_under_100000))
 STORAGE_SIZE = 70000000
 REQUIRED_SIZE = 30000000
 
-current_space =  get_current_space(root_path, STORAGE_SIZE)
+current_space = get_current_space(root_path, STORAGE_SIZE)
 space_to_free = REQUIRED_SIZE - current_space
 
 dirs_that_would_free_enough_space = [d for d in dir_sizes if d > space_to_free]

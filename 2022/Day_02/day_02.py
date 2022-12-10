@@ -31,7 +31,7 @@ DRAW_LOOKUP = dict(DRAW)
 
 with open(os.path.dirname(sys.argv[0]) + "/input.txt", 'r') as f:
     data = f.read()
-    data = data.split('\n') 
+    data = data.split('\n')
     data = [d.split(' ') for d in data]
 
 # Pt 1

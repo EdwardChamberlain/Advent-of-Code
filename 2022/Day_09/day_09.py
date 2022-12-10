@@ -4,7 +4,7 @@ import os
 
 def get_vector(x, y):
     return get_unit_vector((x[0] - y[0], x[1] - y[1]))
-    
+
 
 def get_unit_vector(x):
     a, b = x
@@ -26,7 +26,7 @@ def update_tail(head, tail):
     vect = get_vector(head, tail)
     tail = (tail[0] + vect[0], tail[1] + vect[1])
     return tail
-    
+
 
 def is_touching(head, tail) -> bool:
     return head[0] - 1 <= tail[0] <= head[0] + 1 and head[1] - 1 <= tail[1] <= head[1] + 1
@@ -49,7 +49,7 @@ def move_head(head, direction):
 
 with open(os.path.dirname(sys.argv[0]) + "/input.txt", 'r') as f:
     data = f.read()
-    data = data.split('\n') 
+    data = data.split('\n')
     data = [d.split(' ') for d in data]
 
 
@@ -61,7 +61,7 @@ tail_positions = []
 for cmd in data:
     direction, repeats = cmd
     repeats = int(repeats)
-    
+
     for _ in range(repeats):
         head = move_head(head, direction)
         tail = update_tail(head, tail)

@@ -3,7 +3,7 @@ import os
 
 with open(os.path.dirname(sys.argv[0]) + "/input.txt", 'r') as f:
     data = f.read()
-    data = data.split('\n\n') 
+    data = data.split('\n\n')
     data = [d.split('\n') for d in data]
     data = [list(map(float, d)) for d in data]
 
