@@ -13,10 +13,11 @@ class Monkey:
         self.inspections = 0
     
     def __repr__(self) -> str:
-        return f"Monkey: {self.inspections:>3} :: {self.objects}"
+        return f"Monkey: {self.inspections:>8} :: {self.objects}"
 
     def update_object(self, x: int):
-        return self.operation(x) // 3
+        global SCALER
+        return self.operation(x) % SCALER
 
     def run_test(self, x: int):
         return self.check(x)
@@ -40,7 +41,7 @@ class Monkey:
     def add_object(self, x: int):
         self.objects.append(x)
 
-   
+
 ops = {
     '*': lambda a, b: a * b,
     '+': lambda a, b: a + b,
@@ -54,7 +55,9 @@ with open(os.path.dirname(sys.argv[0]) + "/input.txt", 'r') as f:
     data = data.split('\n\n')
     data = [d.split('\n') for d in data]
 
+
 monkeys = []
+SCALER = 1
 for monkey in data:
     items = monkey[1].split(': ')[-1].split(', ')
     items = list(map(int, items))
@@ -71,6 +74,7 @@ for monkey in data:
 
     test = monkey[3].split(': ')[-1]
     test = int(test.split(' ')[-1])
+    SCALER *= test
     test_func = lambda x, test=test: x % test == 0
 
     true_target = int(monkey[4].split(' ')[-1])
@@ -89,12 +93,7 @@ def run_inspections(cycles, monkeys):
             for m, i in result:
                 monkeys[m].add_object(i)
 
-        print(n)
-        for m in monkeys:
-            print(m)
-        print()
-
-run_inspections(20, monkeys)
+run_inspections(10000, monkeys)
 inspections = [monkey.inspections for monkey in monkeys]
 inspections = sorted(inspections, reverse=True)
 print(inspections[0] * inspections[1])
