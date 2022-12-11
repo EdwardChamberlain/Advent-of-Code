@@ -11,7 +11,6 @@ hist = [x]
 for cmd in data:
     if cmd == 'noop':
         hist.append(x)
-        continue
 
     if cmd.startswith('addx'):
         hist.append(x)
