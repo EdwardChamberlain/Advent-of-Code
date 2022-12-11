@@ -17,7 +17,7 @@ class Monkey:
 
     def update_object(self, x: int):
         global SCALER
-        return self.operation(x) % SCALER
+        return self.operation(x) % SCALER # // 3
 
     def run_test(self, x: int):
         return self.check(x)
