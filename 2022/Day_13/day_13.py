@@ -1,6 +1,7 @@
 import sys
 import os
 import ast
+import functools
 
 
 def compare_int_int(l: int, r: int) -> bool:
@@ -14,21 +15,15 @@ def compare_int_int(l: int, r: int) -> bool:
 
 def compare_lists(left: list, right: list) -> bool:
     for l, r in zip(left, right):
-        print('Compare: ', l, 'vs', r)
 
         if isinstance(l, int) and isinstance(r, int):
-            print('both ints')
             result = compare_int_int(l, r)
-            print(result)
-            print()
             if result is None:
                 continue
             else:
                 return result
 
         elif isinstance(l, list) and isinstance(r, list):
-            print('both lists')
-
             result = compare_lists(l, r)
             if result is None:
                 continue
@@ -36,8 +31,6 @@ def compare_lists(left: list, right: list) -> bool:
                 return result
 
         elif isinstance(l, int) and isinstance(r, list) or isinstance(l, list) and isinstance(r, int):
-            print('one list, one int')
-
             if isinstance(l, int): l = [l]
             if isinstance(r, int): r = [r]
 
@@ -51,9 +44,7 @@ def compare_lists(left: list, right: list) -> bool:
             raise TypeError('Unknown types')
         
     else:
-        print("List exhasuted")
         if len(left) > len(right):
-            print("Left longer")
             return False
         elif len(left) == len(right):
             return None
@@ -61,30 +52,42 @@ def compare_lists(left: list, right: list) -> bool:
             return True
 
 
+def key_lists(left, right) -> int:
+    if compare_lists(left, right):
+        return -1
+    else:
+        return 1
+
 
 with open(os.path.dirname(sys.argv[0]) + "/input.txt", 'r') as f:
-    data = f.read()
+    raw_data = f.read()
 
 # Pt 1
-data = data.split('\n\n')
+data = raw_data.split('\n\n')
 data = [d.split('\n') for d in data]
 
 correct = []
 for i, d in enumerate(data):
-    print()
-    print(f"=== Pair {i+1} ===")
-
     left, right = d
     left = ast.literal_eval(left)
     right = ast.literal_eval(right)
 
-    print(f"Compare {left} vs {right}")
-
     if compare_lists(left, right):
-        print("Correct")
         correct.append(i+1)
-    else:
-        print("Incorrect")
 
-print(correct)
 print(sum(correct))
+
+
+# Pt 2
+data = raw_data.split('\n')
+data = [d for d in data if not d == '']
+data.append('[[2]]')
+data.append('[[6]]')
+data = [ast.literal_eval(d) for d in data]
+
+sorted_data = sorted(data, key=functools.cmp_to_key(key_lists))
+
+i1 = sorted_data.index([[2]]) + 1
+i2 = sorted_data.index([[6]]) + 1
+
+print(i1 * i2)
