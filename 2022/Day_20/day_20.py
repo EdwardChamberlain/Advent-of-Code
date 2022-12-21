@@ -1,6 +1,5 @@
 import sys
 import os
-import itertools
 
 
 def get_data():
