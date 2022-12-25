@@ -19,12 +19,8 @@ def get_elf_positions(data):
     for r, row in enumerate(data):
         for c, cell in enumerate(row):
             if cell == '#':
-                elves.add((r, c))
+                elves.add(complex(r, c))
     return elves
-
-
-def add_vector(a: tuple, b: tuple) -> tuple:
-    return (a[0] + b[0], a[1] + b[1])
 
 
 def has_any_neighbour(elves, elf):
@@ -36,22 +32,22 @@ def has_any_neighbour(elves, elf):
 
 def get_neighbours(xy):
     vectors = [
-        (0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1),
+        0 + 1j, 0 - 1j, 1 + 0j, -1 + 0j, 1 + 1j, 1 - 1j, -1 + 1j, -1 - 1j,
     ]
 
     for v in vectors:
-        yield add_vector(xy, v)
+        yield xy + v
 
 def get_directional_neighbours(xy, direction):
     vectors = {
-        'N': [(-1, +0), (-1, +1), (-1, -1)],
-        'S': [(+1, +0), (+1, +1), (+1, -1)],
-        'W': [(+0, -1), (+1, -1), (-1, -1)],
-        'E': [(+0, +1), (+1, +1), (-1, +1)],
+        'N': [-1 +0j, -1 +1j, -1 -1j],
+        'S': [+1 +0j, +1 +1j, +1 -1j],
+        'W': [+0 -1j, +1 -1j, -1 -1j],
+        'E': [+0 +1j, +1 +1j, -1 +1j],
     }
 
     for v in vectors[direction]:
-        yield add_vector(xy, v)
+        yield xy + v
 
 def elf_in_direction(xy, direction, elves):
     for n in get_directional_neighbours(xy, direction):
@@ -96,8 +92,8 @@ def update_elf_positions(proposals, unique_spaces):
 
 
 def get_bounding_box_area(elves):
-    x = [e[1] for e in elves]
-    y = [e[0] for e in elves]
+    x = [e.imag for e in elves]
+    y = [e.real for e in elves]
 
     width = max(x) - min(x) + 1
     height = max(y) - min(y) + 1
@@ -159,6 +155,6 @@ if __name__ == "__main__":
 
     pt_1(data, cycles=10)
     pt_2(data)
-    
+
     # cProfile.run('pt_1(data, cycles=10)')
     # cProfile.run('pt_2(data)')
