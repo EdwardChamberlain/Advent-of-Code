@@ -1,7 +1,5 @@
 import sys
 import os
-import operator
-import numpy as np
 import collections
 import cProfile
 import itertools
