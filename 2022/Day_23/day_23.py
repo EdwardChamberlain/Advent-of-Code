@@ -1,7 +1,6 @@
 import sys
 import os
 import collections
-import cProfile
 import itertools
 
 
@@ -36,16 +35,18 @@ def get_neighbours(xy):
     for v in vectors:
         yield xy + v
 
+
 def get_directional_neighbours(xy, direction):
     vectors = {
-        'N': [-1 +0j, -1 +1j, -1 -1j],
-        'S': [+1 +0j, +1 +1j, +1 -1j],
-        'W': [+0 -1j, +1 -1j, -1 -1j],
-        'E': [+0 +1j, +1 +1j, -1 +1j],
+        'N': [-1 + 0j, -1 + 1j, -1 - 1j],
+        'S': [+1 + 0j, +1 + 1j, +1 - 1j],
+        'W': [+0 - 1j, +1 - 1j, -1 - 1j],
+        'E': [+0 + 1j, +1 + 1j, -1 + 1j],
     }
 
     for v in vectors[direction]:
         yield xy + v
+
 
 def elf_in_direction(xy, direction, elves):
     for n in get_directional_neighbours(xy, direction):
@@ -154,5 +155,6 @@ if __name__ == "__main__":
     pt_1(data, cycles=10)
     pt_2(data)
 
+    # import cProfile
     # cProfile.run('pt_1(data, cycles=10)')
     # cProfile.run('pt_2(data)')
