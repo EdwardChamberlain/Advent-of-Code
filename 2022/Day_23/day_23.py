@@ -6,6 +6,7 @@ import collections
 import cProfile
 import itertools
 
+
 def get_data():
     with open(os.path.dirname(sys.argv[0]) + "/input.txt", 'r') as f:
         data = f.read()
@@ -14,16 +15,16 @@ def get_data():
 
 
 def get_elf_positions(data):
-    elves = []
+    elves = set()
     for r, row in enumerate(data):
         for c, cell in enumerate(row):
             if cell == '#':
-                elves.append((r, c))
+                elves.add((r, c))
     return elves
 
 
-def add_vector(a, b):
-    return tuple(map(operator.add, a, b))
+def add_vector(a: tuple, b: tuple) -> tuple:
+    return (a[0] + b[0], a[1] + b[1])
 
 
 def has_any_neighbour(elves, elf):
@@ -61,8 +62,7 @@ def elf_in_direction(xy, direction, elves):
 
 def get_unqiue_spaces(proposals):
     unique_spaces = collections.Counter(proposals.values())
-
-    unique_spaces = [k for k, v in unique_spaces.items() if v == 1]
+    unique_spaces = set(k for k, v in unique_spaces.items() if v == 1)
 
     return unique_spaces
 
@@ -74,7 +74,7 @@ def generate_proposals(elves, instructions, return_moves=False):
         if has_any_neighbour(elves, elf):
             for direction in instructions:
                 if not elf_in_direction(elf, direction, elves):
-                    proposals[elf] = list(get_directional_neighbours(elf, direction))[0]
+                    proposals[elf] = next(get_directional_neighbours(elf, direction))
                     moves += 1
                     break
             else:
@@ -89,10 +89,10 @@ def generate_proposals(elves, instructions, return_moves=False):
 
 
 def update_elf_positions(proposals, unique_spaces):
-    return [
+    return set(
         v if v in unique_spaces else k
         for k, v in proposals.items()
-    ]
+    )
 
 
 def get_bounding_box_area(elves):
@@ -156,6 +156,9 @@ def pt_2(data):
 
 if __name__ == "__main__":
     data = get_data()
+
     pt_1(data, cycles=10)
     pt_2(data)
+    
     # cProfile.run('pt_1(data, cycles=10)')
+    # cProfile.run('pt_2(data)')
